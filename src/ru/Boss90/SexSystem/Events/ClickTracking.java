@@ -1,4 +1,4 @@
-package Boss90.Events;
+package ru.Boss90.SexSystem.Events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,9 +7,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import Boss90.Utils.SexMethods;
 
-public class Igryshka implements Listener {
+import ru.Boss90.SexSystem.Utils.Methods;
+
+public class ClickTracking implements Listener {
 	//Отслеживание клика игрока по игрушке
 	
 	@EventHandler
@@ -26,10 +27,10 @@ public class Igryshka implements Listener {
 			return;
 		if (meta.getLore() == null)
 			return;
-		if(meta.getLore().contains(SexMethods.ConfigString("Igryshka.Lore"))) {
-		if(meta.getDisplayName().contains(SexMethods.ConfigString("Igryshka.Name"))) {
-			p.sendTitle(SexMethods.ConfigString("Igryshka.Title"), SexMethods.ConfigString("Igryshka.Title2"), 20, 20, 20);
-			SexMethods.Effect(p);
+		if (meta.getLore().contains(Methods.ConfigString("Igryshka.Lore"))) {
+		if (meta.getDisplayName().equals(Methods.ConfigString("Igryshka.Name"))) {
+			p.sendTitle(Methods.ConfigString("Igryshka.Title"), Methods.ConfigString("Igryshka.Title2"), 20, 20, 20);
+			Methods.Effect(p);
 		}
 	}
 }

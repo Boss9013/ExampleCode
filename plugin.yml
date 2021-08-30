@@ -1,8 +1,0 @@
-name: SystemSex
-main: Boss90.Utils.SexMain
-description: Simple plugin
-version: 0.1
-commands:
-  sex:
-    description: AdminChat.
-    usage: /<command> [TEXT]

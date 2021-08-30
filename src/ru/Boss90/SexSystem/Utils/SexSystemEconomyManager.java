@@ -1,4 +1,4 @@
-package Boss90.Utils;
+package ru.Boss90.SexSystem.Utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -7,7 +7,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 import net.milkbowl.vault.economy.Economy;
 
-public class EconomyManager implements Listener{
+public class SexSystemEconomyManager implements Listener{
 	private static Economy e;
 	
 	public static void init() {
