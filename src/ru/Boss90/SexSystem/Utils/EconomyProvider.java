@@ -7,7 +7,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 import net.milkbowl.vault.economy.Economy;
 
-public class SexSystemEconomyManager implements Listener{
+public class EconomyProvider implements Listener{
 	private static Economy e;
 	
 	public static void init() {

@@ -1,8 +1,10 @@
+package ru.Boss90.SexSystem.Utils;
+
 import java.io.*;
 import org.bukkit.*;
 import org.bukkit.plugin.java.*;
 import org.bukkit.event.*;
-import ru.Boss90.SexSystem.Utils.*;
+
 import ru.Boss90.SexSystem.Commands.*;
 import ru.Boss90.SexSystem.Events.*;
 

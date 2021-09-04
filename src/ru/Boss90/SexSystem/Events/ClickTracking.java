@@ -7,30 +7,24 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import ru.Boss90.SexSystem.Utils.Methods;
+import ru.Boss90.SexSystem.Utils.*;
 
 public class ClickTracking implements Listener {
-	//Отслеживание клика игрока по игрушке
 	
 	@EventHandler
 	public void playerInteract(final PlayerInteractEvent e) {
-		final Player p = e.getPlayer();
-		final Action a = e.getAction();
-		if (a != Action.RIGHT_CLICK_BLOCK && a != Action.RIGHT_CLICK_AIR)
+		final Player interactPlayer = e.getPlayer();
+		final Action playerAction = e.getAction();
+		if (playerAction != Action.RIGHT_CLICK_BLOCK && playerAction != Action.RIGHT_CLICK_AIR)
 			return;
-		final ItemStack item = p.getItemInHand();
-		final ItemMeta meta = item.getItemMeta();
-		if (meta == null)
-			return;
-		if (meta.getDisplayName() == null)
-			return;
-		if (meta.getLore() == null)
-			return;
-		if (meta.getLore().contains(Methods.ConfigString("Igryshka.Lore"))) {
-		if (meta.getDisplayName().equals(Methods.ConfigString("Igryshka.Name"))) {
-			p.sendTitle(Methods.ConfigString("Igryshka.Title"), Methods.ConfigString("Igryshka.Title2"), 20, 20, 20);
-			Methods.Effect(p);
+		@SuppressWarnings("deprecation")
+		final ItemStack itemInHandPlayer = interactPlayer.getItemInHand();
+		final ItemMeta metaItemInHandPlayer = itemInHandPlayer.getItemMeta();
+		
+		if (metaItemInHandPlayer.getLore().contains(ConfigUtils.configGetString("Toy.Lore"))) {
+		if (metaItemInHandPlayer.getDisplayName().equals(ConfigUtils.configGetString("Toy.Name"))) {
+			interactPlayer.sendTitle(ConfigUtils.configGetString("Toy.Title"), ConfigUtils.configGetString("Toy.Title2"), 20, 20, 20);
+			EffectUtils.givePlayerEffects(interactPlayer); //This method adds the effect to the player: SLOW, BLINDNESS, WEAKNESS, for 10 seconds with level 2.
 		}
 	}
 }
