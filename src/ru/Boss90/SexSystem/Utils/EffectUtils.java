@@ -6,8 +6,8 @@ import org.bukkit.potion.PotionEffectType;
 
 public class EffectUtils {
 	final public static void givePlayerEffects (Player p) {
-		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 2));
-		p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 2));
-		p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 2));
+		p.addPotionEffect (new PotionEffect(PotionEffectType.SLOW, 600, 2));
+		p.addPotionEffect (new PotionEffect(PotionEffectType.BLINDNESS, 200, 2));
+		p.addPotionEffect (new PotionEffect(PotionEffectType.WEAKNESS, 200, 2));
 	}
 }

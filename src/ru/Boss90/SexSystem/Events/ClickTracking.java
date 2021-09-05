@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ru.Boss90.SexSystem.Utils.*;
 
-public class ClickTracking implements Listener {
+public class ClickTracking implements Listener{
 	
 	@EventHandler
 	public void playerInteract(final PlayerInteractEvent e) {
@@ -20,12 +20,13 @@ public class ClickTracking implements Listener {
 		@SuppressWarnings("deprecation")
 		final ItemStack itemInHandPlayer = interactPlayer.getItemInHand();
 		final ItemMeta metaItemInHandPlayer = itemInHandPlayer.getItemMeta();
-		
+		try {
 		if (metaItemInHandPlayer.getLore().contains(ConfigUtils.configGetString("Toy.Lore"))) {
 		if (metaItemInHandPlayer.getDisplayName().equals(ConfigUtils.configGetString("Toy.Name"))) {
 			interactPlayer.sendTitle(ConfigUtils.configGetString("Toy.Title"), ConfigUtils.configGetString("Toy.Title2"), 20, 20, 20);
 			EffectUtils.givePlayerEffects(interactPlayer); //This method adds the effect to the player: SLOW, BLINDNESS, WEAKNESS, for 10 seconds with level 2.
 		}
 	}
+	}catch (NullPointerException ignored) {}
 }
 }

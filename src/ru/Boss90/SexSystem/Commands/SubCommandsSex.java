@@ -33,7 +33,7 @@ public class SubCommandsSex implements CommandExecutor {
 	    String randomWord = listOffers.get(index);
 	    
 	    //SUBCOMMANDS
-		if(args[0].equalsIgnoreCase("buy")) {
+		if (args[0].equalsIgnoreCase("buy")) {
 			final ItemStack toy = new ItemStack(Material.BLAZE_ROD, 1);
 			final ItemMeta metaToy = toy.getItemMeta();
 			final ArrayList<String> list = new ArrayList<>();
@@ -44,13 +44,13 @@ public class SubCommandsSex implements CommandExecutor {
             commandSender.getInventory().addItem(toy);
             EconomyProvider.takeMoney(commandSender, Main.plugin.getConfig().getInt("Price.Buy"));
             ChatUtils.sendMessage(commandSender, "Messages.BuyIgryshka");
-		}if(args[0].equalsIgnoreCase("help")) {
+		}if (args[0].equalsIgnoreCase("help")) {
 				List<String> helpMessages = Main.plugin.getConfig().getStringList("Help");
 				helpMessages.forEach(commandSender::sendMessage);
 				for(String message : helpMessages) {
 					commandSender.sendMessage(message);
 				}
-		}if(args[0].equalsIgnoreCase("call")) {
+		}if (args[0].equalsIgnoreCase("call")) {
 				if (args.length == 1) {
 					ChatUtils.sendMessage(commandSender, "Messages.offlinePlayerMessage");
 					return true;
