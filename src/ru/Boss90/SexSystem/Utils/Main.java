@@ -1,19 +1,20 @@
 package ru.Boss90.SexSystem.Utils;
 
-import java.io.*;
-import org.bukkit.*;
-import org.bukkit.plugin.java.*;
-import org.bukkit.event.*;
-
+import java.io.File;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
 import ru.Boss90.SexSystem.Commands.*;
 import ru.Boss90.SexSystem.Events.*;
 
 public class Main extends JavaPlugin implements Listener{
+	
 	public static Main plugin;
 
-	final public void onEnable () {
+	public void onEnable () {
 		plugin = this;
-		final File config = new File(getDataFolder() + File.separator + "config.yml");
+		
+		File config = new File(getDataFolder() + File.separator + "config.yml");
 		if (!config.exists()) {
 			getLogger().info("Creating new file config...");
 			getConfig().options().copyDefaults(true);
@@ -21,9 +22,10 @@ public class Main extends JavaPlugin implements Listener{
 		}
 		getDataFolder().mkdirs();
 		EconomyProvider.init();
+		
 		getCommand("sex").setExecutor(new SubCommandsSex());
 		Bukkit.getPluginManager().registerEvents(new ClickTracking(), this);
 	}
 
-	final public void onDisable () {}
+	public void onDisable () {}
 }
