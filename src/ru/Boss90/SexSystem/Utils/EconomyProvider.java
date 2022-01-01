@@ -1,4 +1,4 @@
-package ru.Boss90.SexSystem.Utils;
+package ru.boss90.sexsystem.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -8,6 +8,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import net.milkbowl.vault.economy.Economy;
 
 public class EconomyProvider implements Listener{
+	
 	private static Economy e;
 	
 	public static void init () {
@@ -20,5 +21,6 @@ public class EconomyProvider implements Listener{
 		 
 		if (e.getBalance(p) < amount) return false;
 		return e.withdrawPlayer(p, amount).transactionSuccess();
-		}
+	}
+	
 }
