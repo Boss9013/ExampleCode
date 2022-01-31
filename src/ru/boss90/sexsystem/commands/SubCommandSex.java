@@ -10,7 +10,7 @@ import net.md_5.bungee.api.chat.*;
 import ru.boss90.sexsystem.main.Main;
 import ru.boss90.sexsystem.utils.*;
 
-public class SubCommands implements CommandExecutor {
+public class SubCommandSex implements CommandExecutor {
 	
 	  public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		  

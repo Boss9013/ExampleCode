@@ -22,7 +22,7 @@ public class Main extends JavaPlugin implements Listener{
 		}
 		getDataFolder().mkdirs();
 		EconomyProvider.init();
-		getCommand("sex").setExecutor(new SubCommands());
+		getCommand("sex").setExecutor(new SubCommandSex());
 		Bukkit.getPluginManager().registerEvents(new ClickTracking(), this);
 	}
 
