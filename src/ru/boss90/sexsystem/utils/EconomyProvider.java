@@ -16,7 +16,7 @@ public class EconomyProvider implements Listener{
 		if (reg != null) e = reg.getProvider();
 	}
 	
-	public static boolean takeMoney (final Player p, final double amount) {
+	public static boolean takeMoney (Player p, double amount) {
 		if (e == null) return false;
 		 
 		if (e.getBalance(p) < amount) return false;

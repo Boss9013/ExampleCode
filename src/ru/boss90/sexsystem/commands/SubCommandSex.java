@@ -56,8 +56,7 @@ public class SubCommandSex implements CommandExecutor {
 		
 		if (args[0].equalsIgnoreCase("help")) {
 			
-				List<String> helpMessages = Main.plugin.getConfig().getStringList("helpForPlugin");
-				for(String helpMsg : helpMessages) {
+				for(String helpMsg : Main.plugin.getConfig().getStringList("helpForPlugin")) {
 					commandSender.sendMessage(ColorUtils.parser(helpMsg));
 				}
 				return true;		
@@ -77,7 +76,8 @@ public class SubCommandSex implements CommandExecutor {
 				MessageUtils.sendMessage(commandSender, "Messages.FailedFindPartner");
 				return true;
 			}
-			if (args[1].contains(commandSender.getName())) {
+			Player targetPlayer = Bukkit.getPlayer(args[1]);
+			if (args[1].equalsIgnoreCase(commandSender.getName())) {
 				MessageUtils.sendMessage(commandSender, "Messages.PartnerIsSender");
 				return true;
 			}
@@ -89,9 +89,9 @@ public class SubCommandSex implements CommandExecutor {
 			EffectUtils.givePlayerEffects(commandSender); //This method adds the effect to the player: SLOW, BLINDNESS, WEAKNESS, for 10 seconds with level 2.
 			MessageUtils.sendMessage(commandSender, "Messages.SucessSexMale"); //This method sends the player a text with a color translation from the config.
 	        commandSender.sendMessage(ColorUtils.parser(randomWord));
-			EffectUtils.givePlayerEffects(Bukkit.getPlayer(args[1]));
-	        MessageUtils.sendMessage(Bukkit.getPlayer(args[1]), "Messages.SucessSexGirl");
-			Bukkit.getPlayer(args[1]).sendMessage(ColorUtils.parser(randomWord));
+			EffectUtils.givePlayerEffects(targetPlayer);
+	        MessageUtils.sendMessage(targetPlayer, "Messages.SucessSexGirl");
+	        targetPlayer.sendMessage(ColorUtils.parser(randomWord));
 				
 		}
 		return true; 
