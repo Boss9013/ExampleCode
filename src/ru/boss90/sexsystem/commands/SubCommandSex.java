@@ -13,7 +13,6 @@ import ru.boss90.sexsystem.utils.*;
 public class SubCommandSex implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
         if (!(sender instanceof Player)) {
             System.out.println("You are not a player");
             return true;
@@ -40,18 +39,18 @@ public class SubCommandSex implements CommandExecutor {
         //SUBCOMMANDS
 
         if (args[0].equalsIgnoreCase("buy")) {
-
-            ArrayList < String > list = new ArrayList < > ();
-            ItemStack toy = new ItemStack(Material.BLAZE_ROD);
-            ItemMeta metaToy = toy.getItemMeta();
-            list.add(ConfigUtils.getString("Toy.Lore"));
-            metaToy.setDisplayName(ConfigUtils.getString("Toy.Name"));
-            metaToy.setLore(list);
-            toy.setItemMeta(metaToy);
+        	if (!EconomyProvider.takeMoney(commandSender, Main.plugin.getConfig().getInt("Settings.PriceToy"))) {
+        		MessageUtils.sendMessage(commandSender, "Messages.NotEnoughMoney");
+        		return true;
+            }
+        	ItemStack toy = new ItemStack(Material.BLAZE_ROD);
+            ItemMeta toyMeta = toy.getItemMeta();
+            toyMeta.setDisplayName(ConfigUtils.getString("Toy.Name"));
+            toyMeta.setLore(Arrays.asList(ConfigUtils.getString("Toy.Lore")));
+            toy.setItemMeta(toyMeta);
             commandSender.getInventory().addItem(toy);
-            EconomyProvider.takeMoney(commandSender, Main.plugin.getConfig().getInt("Settings.PriceToy"));
             MessageUtils.sendMessage(commandSender, "Messages.BuyToy");
-
+            return true;
         }
 
         if (args[0].equalsIgnoreCase("help")) {
@@ -77,11 +76,14 @@ public class SubCommandSex implements CommandExecutor {
                 return true;
             }
             Player targetPlayer = Bukkit.getPlayer(args[1]);
-            if (args[1].equalsIgnoreCase(commandSender.getName())) {
+            if (args[1].equals(commandSender.getName())) {
                 MessageUtils.sendMessage(commandSender, "Messages.PartnerIsSender");
                 return true;
             }
-            if (commandSender.getLocation().distance(Bukkit.getPlayer(args[1]).getLocation()) >= Main.plugin.getConfig().getInt("Settings.distance")) {
+            
+            double distanceBetweenPlayers = commandSender.getLocation().distance(Bukkit.getPlayer(args[1]).getLocation());
+            int maxCallDistance = Main.plugin.getConfig().getInt("Settings.distance");
+            if (distanceBetweenPlayers >= maxCallDistance) {
                 MessageUtils.sendMessage(commandSender, "Messages.PartnerIsFarAway");
                 return true;
             }
