@@ -14,13 +14,7 @@ public class Main extends JavaPlugin implements Listener{
 
 	public void onEnable () {
 		plugin = this;
-		File config = new File(getDataFolder() + File.separator + "config.yml");
-		if (!config.exists()) {
-			getLogger().info("Creating new file config...");
-			getConfig().options().copyDefaults(true);
-			saveDefaultConfig();
-		}
-		getDataFolder().mkdirs();
+		saveDefaultConfig();
 		EconomyProvider.init();
 		getCommand("sex").setExecutor(new SubCommandSex());
 		Bukkit.getPluginManager().registerEvents(new ClickTracking(), this);
