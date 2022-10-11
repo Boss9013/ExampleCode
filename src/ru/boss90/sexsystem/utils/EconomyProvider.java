@@ -17,8 +17,6 @@ public class EconomyProvider implements Listener{
 	}
 	
 	public static boolean takeMoney (Player p, double amount) {
-		if (e == null) return false;
-		 
 		if (e.getBalance(p) < amount) return false;
 		return e.withdrawPlayer(p, amount).transactionSuccess();
 	}
